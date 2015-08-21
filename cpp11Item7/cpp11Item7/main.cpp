@@ -30,7 +30,7 @@ MyClass funcRtn() {
 
 MyClass funcRtn1() {
     
-    return MyClass{ 6, 7 }; // It support MyClass( 6, 7 ) as well.
+    return MyClass{ 6, 7 }; // It supports MyClass( 6, 7 ) as well.
 }
 
 void vectorTest()
@@ -78,7 +78,7 @@ public:
         std::cout << "Widget copy constructor\n";
     }
     
-//    operator float() const        // This will happen error. I don't know what it means.
+//    operator float() const        // This will occur error. I don't know what it means.
 //    {
 //        std::cout << "operator float\n";
 //    }
