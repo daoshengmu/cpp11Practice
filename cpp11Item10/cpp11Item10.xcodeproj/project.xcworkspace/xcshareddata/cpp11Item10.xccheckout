@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1580116-8A4C-44C9-8C5F-AA9BEB0E690D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F1A0076CF10782369138045F4EFB4FC346ED1E51</key>
+		<string>github.com:daoshengmu/cpp11Practice.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>cpp11Item10/cpp11Item10.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F1A0076CF10782369138045F4EFB4FC346ED1E51</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:daoshengmu/cpp11Practice.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F1A0076CF10782369138045F4EFB4FC346ED1E51</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F1A0076CF10782369138045F4EFB4FC346ED1E51</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cpp11Practice</string>
+		</dict>
+	</array>
+</dict>
+</plist>
