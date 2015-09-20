@@ -3,14 +3,14 @@
 //  cpp11Item23
 //
 //  Item 23: Understand std::move and std::forward.
-//  std::move
-//  - Don’t declare objects const if you want to be able to move from them. Move requests on const objects are silently transformed into copy operations.
-//  - It does cast. It doesn’t move. It just helps you get a rvalue reference
+//  - std::move
+//    - Don’t declare objects const if you want to be able to move from them. Move requests on const objects are silently transformed into copy operations.
+//    - It does cast. It doesn’t move. It just helps you get a rvalue reference
 //
-//  std::forward
-//  - A conditional cast
-//  - std::forward casts its argument to an rvalue only if that argument is bound to an rvalue. (Not <Type&>)
-//  - Neither std::move nor std::forward do anything at runtime.
+//  - std::forward
+//    - A conditional cast
+//    - std::forward casts its argument to an rvalue only if that argument is bound to an rvalue. (Not <Type&>)
+//    - Neither std::move nor std::forward do anything at runtime.
 //
 //  Created by Daosheng Mu on 9/20/15.
 //  Copyright (c) 2015 Daosheng Mu. All rights reserved.
