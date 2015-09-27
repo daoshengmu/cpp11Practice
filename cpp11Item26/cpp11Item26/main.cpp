@@ -4,8 +4,8 @@
 //
 //  Item 26: Avoid overloading on universal references
 //  - Functions taking universal references are the greediest functions in C++.
-//  - Perfect-forwarding constructors are especially problematic
-//    - Tey’re typically better matches than copy constructors for non-const lvalues,
+//  - Perfect-forwarding constructors are especially problematic.
+//    - They’re typically better matches than copy constructors for non-const lvalues.
 //    - They can hijack derived class calls to base class copy and move constructors.
 //
 //  Created by Daosheng Mu on 9/27/15.

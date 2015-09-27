@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>AA213666-5BA7-4DFD-B9AD-8F4345CF57D3</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>cpp11Item26</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>F1A0076CF10782369138045F4EFB4FC346ED1E51</key>
 		<string>github.com:daoshengmu/cpp11Practice.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>cpp11Item26/cpp11Item26.xcodeproj/project.xcworkspace</string>
+	<string>cpp11Item26/cpp11Item26.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F1A0076CF10782369138045F4EFB4FC346ED1E51</key>
