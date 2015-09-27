@@ -66,3 +66,21 @@ Item 24: Distinguish universal references from rvalue references
  - If the form of the type declaration isn’t precisely type&&, or if type deduction does not occur, type&& denotes an rvalue reference.
  - Universal references correspond to rvalue references if they’re initialized with rvalues. They correspond to lvalue references if they’re initialized with lvalues.
 
+Item 25: Use std::move on rvalue references
+ - Rvalue references bind only to objects that are candidates for moving.
+ - rvalue references should be unconditionally cast to rvalues (via std::move)
+ - Universal references should be conditionally cast to rvalues (via std::forward)
+ - Use std::forward on universal references
+ - Never use std::move with universal references
+ - Do not perform the same optimization on local variables that you’re returning. Due to RVO.
+   - The type of the local object is the same as that returned by the function
+   - The local object is what’s being returned
+   - Do the same thing for rvalue references and universal references being returned from functions that return by value.
+   - Never apply std::move or std::forward to local objects for RVO
+
+Item 26: Avoid overloading on universal references
+  - Functions taking universal references are the greediest functions in C++.
+  - Perfect-forwarding constructors are especially problematic
+    - Tey’re typically better matches than copy constructors for non-const lvalues,
+    - They can hijack derived class calls to base class copy and move constructors.
+
