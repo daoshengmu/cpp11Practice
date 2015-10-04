@@ -84,3 +84,25 @@ Item 26: Avoid overloading on universal references
     - They’re typically better matches than copy constructors for non-const lvalues.
     - They can hijack derived class calls to base class copy and move constructors.
 
+Item 27: Familiarize yourself with alternatives to overloading on universal references
+  - Abandon overloading
+    - Different function name
+    - Not working for constructor
+  - Pass by const T&
+    - Not efficient. (recall the literal string case)
+  - Pass by value
+    - If the copy must happened
+
+Item 28: Understand reference collapsing
+  - Can't delcare reference to reference
+  - For universal reference. When compilers generate references to references, reference collapsing dictates what happens next.
+  - If either reference is an lvalue reference, the result is an lvalue reference. Otherwise (i.e., if both are rvalue references) the result is an rvalue reference.
+  - Reference collapsing happens
+    - Template instantiation
+    - Type generation for auto variables
+    - typedefs and alias declarations(using)
+    - decltype
+  - Universal reference is a rvalue reference while it's satisfied.
+    - Type deduction distinguishes lvalues from rvalues
+    - Reference collapsing occurs
+
