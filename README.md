@@ -106,3 +106,36 @@ Item 28: Understand reference collapsing
     - Type deduction distinguishes lvalues from rvalues
     - Reference collapsing occurs
 
+Item 29: Assume that move operation are not present, not cheap, and not used
+  - C++11 is willing to generate move operation for classes that lack them
+    - no copy operation
+    - no move operation
+    - no destructors
+  - Data members or base classes of types that have disabled moving
+  - Cheap moving container: std::vector (store pointer). Non-cheap: std::array (store content)
+  - std::string offers constant time move and linear time copy
+    - SSO is implemented while capacity is no more than 15 characters
+    - Moves are no faster than copies
+
+Item30: Familiarize yourself with perfect forwarding failure cases
+  - Forwarding: one function passes its parameters to another function
+    - Only reference parameters should be considered.
+  - Perfect forwarding: don’t just forward objects, but also forward their salient characteristics
+    - types
+    - whether are lvalue or rvalue
+    - whether are const or volatile
+  - Perfect forwarding fails while
+    - Compilers are unable to deduce a type
+    - Compilers deduce the “wrong” type
+  - Pass 0 or NULL as a null pointer to a template, deducing an integral type (typically int)
+    - Would not be a perfect forwarding
+    - pass nullptr instead of 0 or NULL
+  - Overload function names and template names
+    - Function is not a type, can’t be deduced
+  - The kinds of arguments that lead to perfect forwarding fails
+    - braced initializers
+    - null pointers expressed as 0 or NULL
+    - declaration-only integral const static data members
+    - template and overloaded function names
+    - bitfields
+
