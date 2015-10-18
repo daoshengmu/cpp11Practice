@@ -139,3 +139,27 @@ Item30: Familiarize yourself with perfect forwarding failure cases
     - template and overloaded function names
     - bitfields
 
+Item 15: Use constexpr whenever possible
+  - constexpr objects are const and are initialized with values known during compilation.
+  - constexpr functions can produce compile-time results when called with arguments whose values are known during compilation
+  - constexpr objects and functions may be used in a wider range of contexts than non-constexpr objects and functions
+  - constexpr is part of an object’s or function’s interface
+  - Const vs. constexpr
+    - constexpr shall be used in contexts where c++ require integral constant expression
+      - Specification of array size
+      - Integral template arguments
+      - Enumerator values
+      - Alignment specifiers
+      - All constexpr objects are const, but not all const objects are constexpr
+  - Limitation in C++ 11
+      - Contain no more than a single executable statement : a return
+      - conditional "?" recursion
+      - Member function
+        - Constexpr member functions are implicitly const.
+        - Should take and return literal types. (bult-in types except void qualify)
+
+Item 16: Make const member functions thread-safe
+  - Make const member functions thread-safe unless they’ll never be used in a concurrent context.
+  - Use of std::atomic may offer better performance than mutex, but only suitable for manipulation of single variable or memory location.
+
+
