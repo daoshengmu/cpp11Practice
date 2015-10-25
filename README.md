@@ -40,6 +40,46 @@ Item 14: Declare functions noexcept if they won’t emit exceptions
  - All memory deallocation functions and all destructors—both user-defined and compiler-generated—are implicitly noexcept
  - Noexcept is particularly valuable for the move operations, swap, memory deallocation functions, and destructors.
 
+Item 15: Use constexpr whenever possible
+  - constexpr objects are const and are initialized with values known during compilation.
+  - constexpr functions can produce compile-time results when called with arguments whose values are known during compilation
+  - constexpr objects and functions may be used in a wider range of contexts than non-constexpr objects and functions
+  - constexpr is part of an object’s or function’s interface
+  - Const vs. constexpr
+    - constexpr shall be used in contexts where c++ require integral constant expression
+      - Specification of array size
+      - Integral template arguments
+      - Enumerator values
+      - Alignment specifiers
+      - All constexpr objects are const, but not all const objects are constexpr
+  - Limitation in C++ 11
+    - Contain no more than a single executable statement : a return
+    - conditional "?" recursion
+    - Member function
+      - Constexpr member functions are implicitly const.
+      - Should take and return literal types. (bult-in types except void qualify)
+
+Item 16: Make const member functions thread-safe
+  - Make const member functions thread-safe unless they’ll never be used in a concurrent context.
+  - Use of std::atomic may offer better performance than mutex, but only suitable for manipulation of single variable or memory location.
+
+Item 17: Understand special member function generation
+  - Special member functions are those compilers may generate on their own : default ctor/dtor, copy/move operations.
+  - Move Ops are generated only if classes lacking explicitly declared move ops, copy ops, or a dtor.
+  - 2 copy operations are independent
+  - If declaring one Move operator
+    - Something about how move-ctor should be implemented.
+    - Default move-assignment op may do things wrong.
+  - Declaring a move op in a class causes compiler to disable the copy ops.
+  - Move ops won’t be generated for any class that explicitly declares a copy op
+  - If you declare any of a dtor, copy-ctor, or copy-assignment op, you should declare all three.
+  - C++11 won’t generate move ops if there’s user-declared dtor.
+  - When to generate MOVE ops
+    - Only if these 3 things are true in the class.
+    - No copy operations are declared.
+    - No move operations are declared.
+    - No destructor is declared.
+
 Item 23-0: Prerequisite
  - Type&& can only bind to non-const rvalue
  - Implicitly-declared move constructor
@@ -139,27 +179,30 @@ Item30: Familiarize yourself with perfect forwarding failure cases
     - template and overloaded function names
     - bitfields
 
-Item 15: Use constexpr whenever possible
-  - constexpr objects are const and are initialized with values known during compilation.
-  - constexpr functions can produce compile-time results when called with arguments whose values are known during compilation
-  - constexpr objects and functions may be used in a wider range of contexts than non-constexpr objects and functions
-  - constexpr is part of an object’s or function’s interface
-  - Const vs. constexpr
-    - constexpr shall be used in contexts where c++ require integral constant expression
-      - Specification of array size
-      - Integral template arguments
-      - Enumerator values
-      - Alignment specifiers
-      - All constexpr objects are const, but not all const objects are constexpr
-  - Limitation in C++ 11
-      - Contain no more than a single executable statement : a return
-      - conditional "?" recursion
-      - Member function
-        - Constexpr member functions are implicitly const.
-        - Should take and return literal types. (bult-in types except void qualify)
+Item 31: Avoid default capture modes
+  // lambda
+  - Lambda syntax
+    - []: capture nothing
+    - [=]: capture all automatic variables used by value (default capture mode)
+    - [&]: capture all automatic variables used by reference (default capture mode)
+    - [a, &b]: capture a by value and b by reference
+    - Default by-reference capture can lead to dangling references
+    - Default by-value capture is susceptible to dangling pointers
+  - for_each(begin(v), end(v), [] (const auto& n) { cout < n < endl; }); // Only c++14
+    - lambda expression: an expression, part of the source code. (compile time, auto)
+    - closure class: a class from which a closure is instantiated. (compile time)
 
-Item 16: Make const member functions thread-safe
-  - Make const member functions thread-safe unless they’ll never be used in a concurrent context.
-  - Use of std::atomic may offer better performance than mutex, but only suitable for manipulation of single variable or memory location.
+Item 32: Use init capture to move objects into closures
+  - lambda
+    - If you have a move-only object (e.g., a std::unique_ptr), you cannot get it into a closure in C++11.
+    - c++14: the name of a data member in the closure class generated from the lambda
+    - an expression initializing that data member.
+  - std::bind()
+    - First argument: callable object
+    - Subsequent arguments: lvalues are copy constructed; rvalues are move constructed.
+  - Prefer lambdas to std::bind.
+  - Use C++14’s init capture to move objects into closures.
+  - In C++11, emulate init capture via hand-written classes or std::bind.
+
 
 
