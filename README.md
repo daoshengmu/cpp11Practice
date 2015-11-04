@@ -157,7 +157,7 @@ Item 29: Assume that move operation are not present, not cheap, and not used
     - SSO is implemented while capacity is no more than 15 characters
     - Moves are no faster than copies
 
-Item30: Familiarize yourself with perfect forwarding failure cases
+Item 30: Familiarize yourself with perfect forwarding failure cases
   - Forwarding: one function passes its parameters to another function
     - Only reference parameters should be considered.
   - Perfect forwarding: don’t just forward objects, but also forward their salient characteristics
@@ -203,6 +203,29 @@ Item 32: Use init capture to move objects into closures
   - Prefer lambdas to std::bind.
   - Use C++14’s init capture to move objects into closures.
   - In C++11, emulate init capture via hand-written classes or std::bind.
+
+Item 33: Use decltype on auto&& parameters to std::forward them
+  - Generic lambdas in C++ 14
+    - Use auto in parameter specification
+  - declType
+    -   x               lvalue                          rvalue
+    -   auto&& x        lvalue ref                      rvalue ref
+    -   declype(x)      lvalue ref T&                   rvalue ref T or T&&
+    -   std::forward    Widget& forward(Widget& param)      Widget&& forward(Widget& param)
+                          {return static_cast<Widget&>(param);}   {return static_cast<Widget&&>(param);}
+                                                              Widget&& && forward(Widget& param)
+                                                                  {return static_cast<Widget&& &&>(param);}
+
+Item 34: Prefer lambdas to std::bind
+- Why lambda?
+    - More readable
+    - More expressive
+    - More efficient
+- lambda vs. std::bind
+    - C++14, use lambda
+    - C++11, use lambda but std::bind in
+        - Move capture
+        - Polymorphic function objects
 
 
 
